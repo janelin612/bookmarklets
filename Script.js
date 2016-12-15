@@ -7,8 +7,9 @@ javascript:(function(){
     alert("You should use it at StreetVoice Music Page!")
   }else{
 
-    var regexSongId=(/\d+/);
-    var songId=regexSongId.exec(url);
+    var regexSongId=/\/\d+\//;
+    var regexNumber=/\d+/;
+    var songId=regexNumber.exec(regexSongId.exec(url)[0]);
 
     $.ajax({
       url:"https://www.streetvoice.com/api/v3/songs/"+songId+"/",
