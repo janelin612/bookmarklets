@@ -12,7 +12,7 @@ javascript:(function(){
     var songId=regexNumber.exec(regexSongId.exec(url)[0]);
 
     $.ajax({
-      url:"https://"+window.location.host+"/api/v3/songs/"+songId+"/",
+      url:"/api/v3/songs/"+songId+"/",
       method:'GET',
       success:function(data){
         var a = document.createElement("a");
