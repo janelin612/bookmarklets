@@ -6,15 +6,22 @@ javascript: (function() {
 
     //wait 500ms for.... jquery loading?
     setTimeout(function() {
+        let appendTarget="body";
         let jq = jQuery.noConflict();
 
-        //select the img element
-        let url = jq("body main article>div img").attr("src");
+        //Start to get target image url
+        let url="";
+        //Check are we in the dialog mode?
+        if(jq("div[role='dialog']").length>0){
+            appendTarget="div[role='dialog']";
+            url = jq("body div[role='dialog'] article>div img").attr("src");
+        }else{
+            url = jq("body main article>div img").attr("src");
+        }
         let fileName = url.split("/")[url.split("/").length - 1];
-        console.log(url);
 
         //build <a/> and click it
-        let a = jq("<a>").attr("href", url).attr("download", fileName).attr("target", "_blank").appendTo("body");
+        let a = jq("<a>").attr("href", url).attr("download", fileName).attr("target", "_blank").appendTo(appendTarget);
         a[0].click();
         a.remove();
     }, 500);
