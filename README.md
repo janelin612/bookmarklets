@@ -17,7 +17,7 @@
 
 ## 語法
 
-	javascript:(function(){var jqu=document.createElement('script');jqu.src="https://code.jquery.com/jquery-latest.min.js";document.getElementsByTagName('head')[0].appendChild(jqu);setTimeout(function(){let appendTarget="body";let jq=jQuery.noConflict();let url="";if(jq("div[role='dialog']").length>0){appendTarget="div[role='dialog']";url=jq("body div[role='dialog'] article>div img").attr("src")}else{url=jq("body main article>div img").attr("src")}let fileName=url.split("/")[url.split("/").length-1];let a=jq("<a>").attr("href",url).attr("download",fileName).attr("target","_blank").appendTo(appendTarget);a[0].click();a.remove()},500)})()
+	javascript:(function(){let url="";if(document.querySelector("div[role='dialog']")==null){url=document.querySelector("body main article>div img").getAttribute("src")}else{url=document.querySelector("body div[role='dialog'] article>div img").getAttribute("src")}	window.open(url)})()
 
 ## 注意事項
 原則上是設計給單一照片的畫面使用的，用在動態上或者Grid畫面抓錯圖我可不管
