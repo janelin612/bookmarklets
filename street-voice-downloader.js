@@ -12,12 +12,12 @@ javascript:(function(){
     var songId=regexNumber.exec(regexSongId.exec(url)[0]);
 
     $.ajax({
-      url:"/api/v3/songs/"+songId+"/",
-      method:'GET',
+      url:"/api/v3/songs/"+songId+"/file/",
+      method:'post',
+      data:{},
       success:function(data){
         var a = document.createElement("a");
         a.href = data.file;
-        a.download = data.name;
         document.body.appendChild(a);
         a.click();
       },
