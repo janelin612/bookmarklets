@@ -32,5 +32,5 @@ javascript:(function(){let url="";if(document.querySelector("div[role='dialog']"
 ## 語法
 
 ```javascript
-javascript:(function(){var url=JSON.parse(document.querySelector("#js-initial-data").dataset.json).streamingUrlHls;if(url==null||url==""){alert("something woring~")}else{prompt("m3u8",url)}})()
+javascript:(function(){var url=JSON.parse(document.querySelector("#js-initial-data").dataset.json).streamingUrlHls;if(url==null||url==""){alert("something wrong~")}else{prompt("m3u8",url)}})()
 ```
