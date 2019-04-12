@@ -8,7 +8,7 @@
 ## 語法
 
 ```javascript
-javascript:(function(){var TARGET_DOMAIN='streetvoice';var TARGET_FUNCTION='songs';var url=""+window.location;if(url.indexOf(TARGET_DOMAIN)==-1||url.indexOf(TARGET_FUNCTION)==-1){alert("You should use it at StreetVoice Music Page!")}else{var regexSongId=/\/\d+\//;var regexNumber=/\d+/;var songId=regexNumber.exec(regexSongId.exec(url)[0]);$.ajax({url:"/api/v3/songs/"+songId+"/file/",method:'post',data:{},success:function(data){var a=document.createElement("a");a.href=data.file;document.body.appendChild(a);a.click()},error:function(){alert('error~')}})}})()
+javascript:(function(){let TARGET_DOMAIN="streetvoice";let TARGET_FUNCTION="songs";let url=""+window.location;if(url.indexOf(TARGET_DOMAIN)!=-1&&url.indexOf(TARGET_FUNCTION)!=-1){let regexSongId=/\/\d+\//;let regexNumber=/\d+/;let songId=regexNumber.exec(regexSongId.exec(url)[0]);fetch("/api/v3/songs/"+songId+"/file/",{method:"POST"}).then(res=>{return res.json()}).then(data=>{let a=document.createElement("a");a.href=data.file;document.body.appendChild(a);a.click()}).catch(err=>{console.log(err)})}})()
 ```
 
 ## 使用方法  
