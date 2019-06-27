@@ -35,3 +35,14 @@ javascript:(function(){let selector=document.querySelector("div[role=\"dialog\"]
 ```javascript
 javascript:(function(){var url=JSON.parse(document.querySelector("#js-initial-data").dataset.json).streamingUrlHls;if(url==null||url==""){alert("something wrong~")}else{prompt("m3u8",url)}})()
 ```
+
+# MDPR Photo Downloader
+[mdpr.jp](https://mdpr.jp/)為日本一個雜誌網站，本工具可以列出畫面上全部圖片的原始檔
+
+## 語法
+```javascript
+javascript:(function(){let list=[];document.querySelectorAll("div.list-photo figure.square img").forEach(x=>{let url=x.src;if(url.indexOf("?")!=-1){url=url.split("?")[0]}list.push(url)});document.body.innerHTML="";list.forEach(x=>{let img=document.createElement("img");img.src=x;img.style.cssText="height:250px";document.body.appendChild(img)})})()
+```
+
+## 注意事項
+僅適用網址開頭為`https://mdpr.jp/photo/`的頁面內容
