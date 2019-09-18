@@ -19,7 +19,6 @@ javascript:(function(){let TARGET_DOMAIN="streetvoice";let TARGET_FUNCTION="song
  下載IG圖片的小工具 
 
 ## 語法
-
 ```javascript
 javascript:(function(){let selector=document.querySelector("div[role=\"dialog\"]")==null?"body main article>div img":"body div[role=\"dialog\"] article>div img";let url=document.querySelector(selector).getAttribute("src");window.open(url)})()
 ```
@@ -31,9 +30,8 @@ javascript:(function(){let selector=document.querySelector("div[role=\"dialog\"]
 從[Showroom](http://showroom-live.com/)取得直播的m3u8檔案，可另外至PotPlayer之類的地方播放
 
 ## 語法
-
 ```javascript
-javascript:(function(){var url=JSON.parse(document.querySelector("#js-initial-data").dataset.json).streamingUrlHls;if(url==null||url==""){alert("something wrong~")}else{prompt("m3u8",url)}})()
+javascript:(function(){var id=document.querySelector("#this-room-profile").href.match(/\d+/)[0];fetch(`/api/live/streaming_url?room_id=${id}&ignore_low_stream=1`).then(r=>{return r.json()}).then(j=>{let url=j.streaming_url_list.find(el=>{return el.type=="hls"}).url;prompt("m3u8",url)}).catch(er=>{alert("something wrong~")})})()
 ```
 
 # MDPR Photo Downloader
