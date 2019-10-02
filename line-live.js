@@ -3,10 +3,7 @@ javascript: (function () {
   fetch(`https://lssapi.line-apps.com/v1/live/playInfo?contentId=${contentId}`)
     .then(resp => resp.json())
     .then(json => {
-      let a = document.createElement("a");
-      a.href = json.playUrls.abr;
-      document.body.appendChild(a);
-      a.click();
+      prompt("m3u8",json.playUrls["720"]);
     })
     .catch(err => {
       console.log(err);
