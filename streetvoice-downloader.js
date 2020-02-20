@@ -1,9 +1,8 @@
 javascript: (function () {
-  let regexSongId = /\/\d+\//;
-  let regexNumber = /\d+/;
-  let songId = regexNumber.exec(regexSongId.exec(window.location)[0]);
+  let regex = /songs\/(\d+)/;
+  let id = regex.exec(window.location)[1];
 
-  fetch(`/api/v3/songs/${songId}/file/`, { method: "POST" })
+  fetch(`/api/v3/songs/${id}/file/`, { method: "POST" })
     .then(resp => resp.json())
     .then(data => {
       let a = document.createElement("a");
