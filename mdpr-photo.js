@@ -1,17 +1,13 @@
 javascript: (() => {
-  let list = [];
-  document.querySelectorAll("div.list-photo figure.square img").forEach(x => {
-    let url = x.src;
-    if (url.indexOf("?") != -1) {
-      url = url.split("?")[0];
-    }
-    list.push(url);
-  });
+  let list = Array.from(document.querySelectorAll('.pg-photo__body img')).map(img => {
+    let u = new URL(img.src);
+    return u.origin + u.pathname;
+  })
   document.body.innerHTML = "";
   list.forEach(x => {
     let img = document.createElement("img");
     img.src = x;
-    img.style.cssText = "height:250px";
+    img.style.cssText = "height:300px";
     document.body.appendChild(img);
   });
 })()

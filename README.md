@@ -36,14 +36,14 @@ javascript:(async()=>{try{let id=document.querySelector("#this-room-profile").hr
 
 
 # MDPR Photo Downloader
-[mdpr.jp](https://mdpr.jp/)為日本一個雜誌網站，本工具可以列出畫面上全部圖片的原始檔
+[mdpr.jp](https://mdpr.jp/)為日本一個雜誌網站，本工具可以列出畫面上全部圖片的原始尺寸檔案
 
 ## 語法
 ```javascript
-javascript:(()=>{let e=[];document.querySelectorAll("div.list-photo figure.square img").forEach(t=>{let c=t.src;-1!=c.indexOf("?")&&(c=c.split("?")[0]),e.push(c)}),document.body.innerHTML="",e.forEach(e=>{let t=document.createElement("img");t.src=e,t.style.cssText="height:250px",document.body.appendChild(t)})})()
+javascript:(()=>{let e=Array.from(document.querySelectorAll(".pg-photo__body img")).map(e=>{let t=new URL(e.src);return t.origin+t.pathname});document.body.innerHTML="",e.forEach(e=>{let t=document.createElement("img");t.src=e,t.style.cssText="height:300px",document.body.appendChild(t)})})();
 ```
 ## 注意事項
-僅適用網址開頭為`https://mdpr.jp/photo/`的頁面內容
+僅適用網址開頭為`https://mdpr.jp/photo/detail/`的頁面內容
 
 
 # LINE LIVE（ラインライブ）
