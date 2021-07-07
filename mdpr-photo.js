@@ -1,4 +1,4 @@
-javascript: (function () {
+javascript: (() => {
   let list = [];
   document.querySelectorAll("div.list-photo figure.square img").forEach(x => {
     let url = x.src;

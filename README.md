@@ -9,7 +9,7 @@
 
 ## 語法
 ```javascript
-javascript:(function (){let regex=/songs\/(\d+)/;let id=regex.exec(window.location)[1];fetch(`/api/v3/songs/${id}/file/`,{method:"POST"}) .then(resp=>resp.json()) .then(data=>{let a=document.createElement("a");a.href=data.file;document.body.appendChild(a);a.click()}).catch(err=>{console.log(err)})})()
+javascript:(async()=>{try{let regex=/songs\/(\d+)/;let id=regex.exec(window.location)[1];let data=await(await fetch(`/api/v3/songs/${id}/file/`,{method:"POST"})).json();let a=document.createElement("a");a.href=data.file;document.body.appendChild(a);a.click()}catch(e){console.error(e)}})()
 ```
 
 ## 使用方法  
@@ -20,7 +20,7 @@ javascript:(function (){let regex=/songs\/(\d+)/;let id=regex.exec(window.locati
 
 ## 語法
 ```javascript
-javascript:(function(){let selector=document.querySelector("div[role=\"dialog\"]")==null?"body main article>div img":"body div[role=\"dialog\"] article>div img";let url=document.querySelector(selector).getAttribute("src");window.open(url)})()
+javascript:(()=>{let selector=document.querySelector("div[role=\"dialog\"]")==null?"body main article>div img":"body div[role=\"dialog\"] article>div img";let url=document.querySelector(selector).getAttribute("src");window.open(url)})()
 ```
 ## 注意事項
 原則上是設計給單一照片的畫面使用的，用在動態上或者Grid畫面抓錯圖我可不管
@@ -31,7 +31,7 @@ javascript:(function(){let selector=document.querySelector("div[role=\"dialog\"]
 
 ## 語法
 ```javascript
-javascript:(function(){let id=document.querySelector("#this-room-profile").href.match(/\d+/)[0];fetch(`/api/live/streaming_url?room_id=${id}&ignore_low_stream=1`).then(r=>r.json()).then(j=>{let url=j.streaming_url_list.find(el=>el.type=="hls").url;prompt("m3u8",url)}).catch(e=>{console.log(e)})})()
+javascript:(async()=>{try{let id=document.querySelector("#this-room-profile").href.match(/\d+/)[0];let json=await(await fetch(`/api/live/streaming_url?room_id=${id}&ignore_low_stream=1`)).json();let url=json.streaming_url_list.find(el=>el.type=="hls").url;prompt("m3u8",url)}catch(e){console.error(e)}})()
 ```
 
 
@@ -40,7 +40,7 @@ javascript:(function(){let id=document.querySelector("#this-room-profile").href.
 
 ## 語法
 ```javascript
-javascript:(function(){let list=[];document.querySelectorAll("div.list-photo figure.square img").forEach(x=>{let url=x.src;if(url.indexOf("?")!=-1){url=url.split("?")[0]}list.push(url)});document.body.innerHTML="";list.forEach(x=>{let img=document.createElement("img");img.src=x;img.style.cssText="height:250px";document.body.appendChild(img)})})()
+javascript:(()=>{let e=[];document.querySelectorAll("div.list-photo figure.square img").forEach(t=>{let c=t.src;-1!=c.indexOf("?")&&(c=c.split("?")[0]),e.push(c)}),document.body.innerHTML="",e.forEach(e=>{let t=document.createElement("img");t.src=e,t.style.cssText="height:250px",document.body.appendChild(t)})})()
 ```
 ## 注意事項
 僅適用網址開頭為`https://mdpr.jp/photo/`的頁面內容
@@ -51,5 +51,5 @@ javascript:(function(){let list=[];document.querySelectorAll("div.list-photo fig
 
 ## 語法
 ```javascript
-javascript:(function(){let contentId=JSON.parse(document.querySelector("#data").getAttribute("data-broadcast")).lsaPath;fetch(`https://lssapi.line-apps.com/v1/live/playInfo?contentId=${contentId}`).then(resp=>resp.json()).then(json=>{prompt("m3u8",json.playUrls["720"])}).catch(err=>{console.log(err)})})()
+javascript:(async()=>{try{let contentId=JSON.parse(document.querySelector("#data").getAttribute("data-broadcast")).lsaPath;let json=await(await fetch(`https://lssapi.line-apps.com/v1/live/playInfo?contentId=${contentId}`)).json();prompt("m3u8",json.playUrls["720"])}catch(e){console.error(e)}})()
 ```
