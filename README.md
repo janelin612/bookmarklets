@@ -5,7 +5,7 @@
 自行新增一筆書籤，然後將下方附上的程式碼貼在書籤的網址列即可新增
 
 ## StreetVoice MP3 Downloader
-快速在 [Streetvoice](https://streetvoice.com/ )取得 mp3 連結的工具
+快速在 [Streetvoice](https://streetvoice.com/) 取得 mp3 連結的工具
 
 ### 語法
 ```js
@@ -15,7 +15,7 @@ javascript:(async()=>{try{let e=/songs\/(\d+)/.exec(window.location)[1],o=await(
 ### 使用方法  
 在歌曲畫面 `https://www.streetvoice.com/AAAA/songs/0000/` 點書籤即可啟用
 
- ---
+---
 
 ## Instagram Image Source
 抽取 IG 貼文照片原始檔
@@ -59,4 +59,14 @@ javascript:(()=>{let e=Array.from(document.querySelectorAll(".pg-photo__body img
 ### 語法
 ```js
 javascript:(async()=>{try{let t=JSON.parse(document.querySelector("#data").getAttribute("data-broadcast")).item,a=await(await fetch(`https://live-api.line-apps.com/web/v4.0/channel/${t.channelId}/broadcast/${t.id}`)).json();prompt("m3u8",a.liveHLSURLs[720])}catch(t){console.error(t)}})();
+```
+
+---
+
+## Open Graph Image (og:image) 
+快速抓取網站的社群媒體預覽圖片的網址 (有設定的才有，沒設定的不會自動找備案)
+
+### 語法
+```js
+javascript:(()=>{let a=document.createElement("a");a.href=document.querySelector('meta[property="og:image"]').getAttribute("content");document.querySelector("body").appendChild(a);a.click()})();
 ```
