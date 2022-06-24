@@ -8,8 +8,9 @@
 快速在 [Streetvoice](https://streetvoice.com/) 取得 mp3 連結的工具
 
 ### 語法
+
 ```js
-javascript:(async()=>{try{let e=/songs\/(\d+)/.exec(window.location)[1],o=await(await fetch(`/api/v3/songs/${e}/file/`,{method:"POST"})).json(),c=document.createElement("a");c.href=o.file,document.body.appendChild(c),c.click()}catch(e){console.error(e)}})();
+/** 網站改版過，舊語法目前已無法使用，待日後補上 */
 ```
 
 ### 使用方法  
@@ -17,24 +18,12 @@ javascript:(async()=>{try{let e=/songs\/(\d+)/.exec(window.location)[1],o=await(
 
 ---
 
-## Instagram Image Source
-抽取 IG 貼文照片原始檔
-
-### 語法
-```js
-javascript:(()=>{let e=null==document.querySelector('div[role="dialog"]')?"body main article>div img":'body div[role="dialog"] article>div img',i=document.querySelector(e).getAttribute("src");window.open(i)})();
-```
-### 注意事項
-原則上是設計給單一照片的畫面使用的，其他頁面使用可能會有問題
-
----
-
 ## SHOWROOM（ショールーム） m3u8
-從 [Showroom](http://showroom-live.com/ )取得直播的 m3u8 檔案，可另外至 PotPlayer 之類的地方播放
+從 [Showroom](http://showroom-live.com/) 取得直播的 m3u8 檔案，可另外至 PotPlayer 之類的地方播放
 
 ### 語法
 ```js
-javascript:(async()=>{try{let r=document.querySelector("#this-room-profile").href.match(/\d+/)[0],e=(await(await fetch(`/api/live/streaming_url?room_id=${r}&ignore_low_stream=1`)).json()).streaming_url_list.find(r=>"hls"==r.type).url;prompt("m3u8",e)}catch(r){console.error(r)}})();
+javascript:(async()=>{try{let a=(await (await fetch(`/api/live/streaming_url?room_id=${window.__NUXT__.state.roomId}&ignore_low_stream=1`)).json()).streaming_url_list.find(a=>"hls"==a.type).url;prompt("m3u8",a)}catch(b){console.error(b)}})();
 ```
 ### 使用方法
 在直播畫面上使用 (尚未開始串流的直播台不適用)
